@@ -18,7 +18,7 @@ userRemoteConfigs: [[url: 'https://github.com/SumitMittal1994/todoapp.git']])
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'docker_hub_cred', url: 'https://index.docker.io/v1/') {
+                    withDockerRegistry(credentialsId: 'docker_cred', url: 'https://index.docker.io/v1/') {
                         def imageTag = "sumitMittal/todoapp:latest"
                         docker.image(imageTag).push()
                         echo 'successful Push to Docker Hub'
