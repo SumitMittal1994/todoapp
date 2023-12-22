@@ -31,5 +31,17 @@ userRemoteConfigs: [[url: 'https://github.com/SumitMittal1994/todoapp.git']])
                         echo 'successful Push to Docker Hub'
                     }
 } }
+}
+     stage('Deploy to Kubernetes') {
+       steps {
+        script {
+        // Replace your generated pipeline script here
+        kubeconfig(credentialsId: 'kube_config', serverUrl: 
+       'https://kubernetes.docker.internal:6443') {
+        def kubeConfig = readFile 'kubernetes-config.yaml'
+        sh "kubectl apply -f kubernetes-config.yaml"
+       }
 } }
+} 
+}
 }
