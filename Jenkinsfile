@@ -7,6 +7,13 @@ pipeline {
 userRemoteConfigs: [[url: 'https://github.com/SumitMittal1994/todoapp.git']])
                 echo 'successful checkout'
 } }
+    stage('Build and Package') {
+        steps {
+            withMaven(maven: 'todo-maven') {
+                sh 'mvn clean install'
+              echo 'successful Build and Package'
+            }
+} }
         stage('Build jar and image using Docker file ') {
             steps {
                 script {
